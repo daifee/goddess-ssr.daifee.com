@@ -1,5 +1,12 @@
 
 import './styles.scss';
 
-export default () => <div>Welcome to next.js!</div>
+export default () => {
+
+  return (
+    <div>
+      <h1>Welcome to next.js!</h1>
+    </div>
+  );
+};
 
