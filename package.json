@@ -1,0 +1,25 @@
+{
+  "name": "goddess-ssr.daifee.com",
+  "version": "1.0.0",
+  "description": "react ssr goddess daifee.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daifee/goddess-ssr.daifee.com.git"
+  },
+  "keywords": [
+    "react",
+    "ssr",
+    "goddess",
+    "daifee.com"
+  ],
+  "author": "daifee <mr_zhangjiayong@163.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daifee/goddess-ssr.daifee.com/issues"
+  },
+  "homepage": "https://github.com/daifee/goddess-ssr.daifee.com#readme"
+}
