@@ -1,0 +1,12 @@
+.components-page {
+  height: 100%;
+  box-sizing: border-box; }
+
+.components-sub-page {
+  padding-top: 45px; }
+  .components-sub-page > .am-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2; }

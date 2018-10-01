@@ -26,10 +26,18 @@
   },
   "homepage": "https://github.com/daifee/goddess-ssr.daifee.com#readme",
   "dependencies": {
+    "@rematch/core": "^1.0.2",
     "@zeit/next-sass": "^1.0.1",
+    "antd-mobile": "^2.2.5",
+    "axios": "^0.18.0",
+    "classnames": "^2.2.6",
+    "cos-js-sdk-v5": "^0.4.17",
+    "dayjs": "^1.7.7",
     "next": "^7.0.1",
     "node-sass": "^4.9.3",
+    "prop-types": "^15.6.2",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7"
   }
 }
