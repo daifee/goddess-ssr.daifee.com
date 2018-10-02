@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {NavBar} from 'antd-mobile';
 import classNames from 'classnames';
-import {withRouter} from 'react-router-dom';
+import {withRouter} from 'next/router';
 
 class SubPage extends React.Component {
   static propTypes = {

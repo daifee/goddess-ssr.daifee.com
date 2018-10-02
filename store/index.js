@@ -18,7 +18,7 @@ import {
   scopeDispatch
 } from './scope';
 import * as selector from './selector';
-// import {scopeModels as homeModels} from '../pages/Home/store';
+import {scopeModels as homeModels} from '../pages/home/store';
 // import {scopeModels as loginModels} from '../pages/Login/store';
 // import {scopeModels as registerModels} from '../pages/Register/store';
 // import {scopeModels as profileModels} from '../pages/Profile/store';
@@ -32,7 +32,7 @@ function initStore(initialState = {}) {
     name: 'store',
     models: {
       ...globalModels,
-      // ...homeModels,
+      ...homeModels,
       // ...loginModels,
       // ...registerModels,
       // ...profileModels,
