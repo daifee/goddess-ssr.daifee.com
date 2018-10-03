@@ -4,7 +4,7 @@ import {SubPage} from '../../components/Page';
 import { List, WhiteSpace } from 'antd-mobile';
 import {dispatch as globalDispatch} from '../../store';
 
-import pkg from '../../../package.json';
+import pkg from '../../package.json';
 
 import './styles.css';
 
