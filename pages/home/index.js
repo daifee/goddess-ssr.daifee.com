@@ -130,8 +130,10 @@ class Home extends React.Component {
 
 export default withRematch(initStore, (rootState, props) => {
   const state = getState(rootState);
+  const user = globalStateSelector.user(rootState);
 
   return {
+    user,
     ...state,
     ...props
   };

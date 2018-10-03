@@ -1,7 +1,7 @@
 
 import {PENDING, SUCCESS, FAILURE, ASYNC_STATE} from '../../utils/status';
 import * as serviceUser from '../../services/user';
-import * as utilAsyncStorage from '../../utils/asyncStorage';
+import {client as clientCookie} from '../../utils/cookie';
 
 const PERSISTENCE_KEY = 'persistence_me';
 
@@ -40,7 +40,7 @@ export default {
       this.setPending();
       try {
         user = await serviceUser.authorize(user);
-        await utilAsyncStorage.setItem(PERSISTENCE_KEY, user);
+        clientCookie.set(PERSISTENCE_KEY, user);
 
         this.setData(user);
 
@@ -54,7 +54,7 @@ export default {
 
     async reauthorize() {
       this.setPending('reauthorize');
-      const user = await utilAsyncStorage.getItem(PERSISTENCE_KEY);
+      const user = clientCookie.get(PERSISTENCE_KEY);
 
       if (user) {
         this.setData(user);
@@ -65,7 +65,7 @@ export default {
     },
 
     async deauthorize() {
-      await utilAsyncStorage.remoteItem(PERSISTENCE_KEY);
+      clientCookie.remove(PERSISTENCE_KEY);
       this.remoteData();
     },
 
@@ -73,7 +73,7 @@ export default {
       this.setPending();
       try {
         user = await serviceUser.register(user);
-        await utilAsyncStorage.setItem(PERSISTENCE_KEY, user);
+        clientCookie.set(PERSISTENCE_KEY, user);
 
         this.setData(user);
 
