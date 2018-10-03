@@ -1,6 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {SubPage} from '../../components/Page';
+import {
+  dispatch as globalDispatch,
+  connect
+} from '../../store';
 import {dispatch, getState} from './store';
 import UserList from '../../components/UserList';
 import { WhiteSpace } from 'antd-mobile';
@@ -8,6 +11,10 @@ import './styles.css';
 import { SUCCESS, shouldBlock } from '../../utils/status';
 
 class UserListPage extends React.Component {
+  static getInitialProps = async (ctx) => {
+    await globalDispatch('me/reauthorize', ctx);
+  };
+
   handleEndReached = () => {
     const {page, status} = this.props;
 
