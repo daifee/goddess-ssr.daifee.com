@@ -1,10 +1,13 @@
 
 import React from 'react';
-import {connect} from 'react-redux';
 import {SubPage} from '../../components/Page';
 import BlogList from '../../components/BlogList';
 
 import {dispatch, getState} from './store';
+import {
+  dispatch as globalDispatch,
+  connect
+} from '../../store';
 import { SUCCESS, shouldBlock } from '../../utils/status';
 import { WhiteSpace } from 'antd-mobile';
 import './styles.css';
@@ -12,6 +15,9 @@ import './styles.css';
 
 
 class BlogListPage extends React.Component {
+  static getInitialProps = async (ctx) => {
+    await globalDispatch('me/reauthorize', ctx);
+  };
 
   handleEndReached = () => {
     const {page, status} = this.props;
