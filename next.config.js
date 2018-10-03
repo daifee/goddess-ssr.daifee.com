@@ -33,6 +33,9 @@ function moduleDir (m) {
 
 module.exports = withCSS(withSass({
   distDir: 'dist',
+
+  useFileSystemPublicRoutes: false,
+
   webpack: (config, { dev }) => {
     config.resolve.extensions = ['.web.js', '.js', '.json']
 
