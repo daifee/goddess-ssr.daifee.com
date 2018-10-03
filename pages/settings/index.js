@@ -1,34 +1,41 @@
 
 import React from 'react';
+import {withRouter} from 'next/router';
 import {SubPage} from '../../components/Page';
 import { List, WhiteSpace } from 'antd-mobile';
-import {dispatch as globalDispatch} from '../../store';
-
+import {
+  dispatch as globalDispatch,
+  selector as globalStateSelector,
+  connect
+} from '../../store';
 import pkg from '../../package.json';
-
 import './styles.css';
 
 class Settings extends React.Component {
+  static getInitialProps = async (ctx) => {
+    await globalDispatch('me/reauthorize', ctx);
+  };
+
   pushAbout = () => {
-    const {history} = this.props;
-    history.push('/about');
+    const {router} = this.props;
+    router.push('/about');
   };
 
   pushAllUsers = () => {
-    const {history} = this.props;
-    history.push('/admin/users');
+    const {router} = this.props;
+    router.push('/admin/users');
   };
 
   pushAllBlogs = () => {
-    const {history} = this.props;
-    history.push('/admin/blogs');
+    const {router} = this.props;
+    router.push('/admin/blogs');
   };
 
   handleLogout = async () => {
-    const {history} = this.props;
+    const {router} = this.props;
     await globalDispatch('me/deauthorize');
 
-    history.replace('/');
+    router.replace('/');
   };
 
   render() {
@@ -80,4 +87,11 @@ class Settings extends React.Component {
   }
 }
 
-export default Settings;
+export default connect((rootState, props) => {
+  const user = globalStateSelector.user(rootState);
+
+  return {
+    user,
+    ...props
+  };
+})(withRouter(Settings));
