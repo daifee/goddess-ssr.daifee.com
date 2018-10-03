@@ -24,9 +24,8 @@ class Profile extends React.Component {
 
   pushRecommended = () => {
     const {user, router} = this.props;
-    router.push(`/users/${user.id}/blogs/`, {
-      query: {recommended: 'all'}
-    });
+    const url = `/users/${user.id}/blogs/?recommended=all`;
+    router.push(url);
   };
 
   pushLikes = () => {

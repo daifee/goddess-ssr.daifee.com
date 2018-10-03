@@ -1,9 +1,12 @@
 
 import React from 'react';
-import {connect} from 'react-redux';
 import {SubPage} from '../../components/Page';
 import BlogList from '../../components/BlogList';
-
+import {
+  dispatch as globalDispatch,
+  selector as globalSelector,
+  connect
+} from '../../store';
 import {dispatch, getState} from './store';
 import { SUCCESS, shouldBlock } from '../../utils/status';
 
@@ -12,7 +15,9 @@ import { WhiteSpace } from 'antd-mobile';
 
 
 class UserBlogList extends React.Component {
-
+  static getInitialProps = async (ctx) => {
+    await globalDispatch('me/reauthorize', ctx);
+  };
 
   handleEndReached = () => {
     const {page, status, user} = this.props;
@@ -59,8 +64,10 @@ class UserBlogList extends React.Component {
 
 export default connect((rootState, props) => {
   const {blogList} = getState(rootState);
+  const user = globalSelector.user(rootState);
 
   return {
+    user,
     status: blogList.status,
     blogList: blogList.data,
     page: blogList.page,
