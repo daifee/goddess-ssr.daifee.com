@@ -1,10 +1,19 @@
 import React from 'react';
 import { Toast, List, TextareaItem, WingBlank, WhiteSpace, ImagePicker, NavBar } from 'antd-mobile';
-import {connect} from 'react-redux';
+import {withRouter} from 'next/router';
+import {
+  dispatch as globalDispatch,
+  selector as globalSelector,
+  connect
+} from '../../store';
 import {getState, dispatch} from './store';
 import './styles.css';
 
 class EditBlog extends React.Component {
+  static getInitialProps = async (ctx) => {
+    await globalDispatch('me/reauthorize', ctx);
+  };
+
   handleFilesChange = (files, type, index) => {
     dispatch('blog/setFiles', files);
   };
@@ -14,12 +23,12 @@ class EditBlog extends React.Component {
   };
 
   handleCancel = () => {
-    const {history} = this.props;
-    history.goBack();
+    const history = window.history;
+    history.back();
   };
 
   handlePublish = async () => {
-    const {blog, user, history} = this.props;
+    const {blog, user, router} = this.props;
 
     Toast.loading('发布中...');
     const result = await dispatch('blog/publish', {
@@ -33,7 +42,7 @@ class EditBlog extends React.Component {
       Toast.fail(result.message);
     } else {
       Toast.success('发布成功!');
-      history.push(`/users/${user.id}`);
+      router.push(`/users/${user.id}`);
     }
   };
 
@@ -87,5 +96,6 @@ class EditBlog extends React.Component {
 
 export default connect((rootState, props) => {
   const state = getState(rootState);
-  return {...props, blog: state.blog};
-})(EditBlog);
+  const user = globalSelector.user(rootState);
+  return {...props, blog: state.blog, user};
+})(withRouter(EditBlog));

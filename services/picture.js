@@ -6,11 +6,15 @@ import isServer from '../utils/isServer';
 const BUCKET = 'goddess-1257388993';
 const REGION = 'ap-chengdu';
 
+function createInstance() {
+
+}
+
 let cos = {};
-if (!isServer) {
+if (!isServer()) {
   const COS = require('cos-js-sdk-v5');
   // 初始化实例
-  const cos = new COS({
+  cos = new COS({
     async getAuthorization(options, callback) {
       // 异步获取签名
       try {
@@ -38,6 +42,7 @@ if (!isServer) {
 }
 // 上传图片
 export async function upload(userId, file) {
+
   return new Promise((resolve, reject) => {
     const key = `${userId}/${Date.now()}-${file.name}`;
     cos.sliceUploadFile({
