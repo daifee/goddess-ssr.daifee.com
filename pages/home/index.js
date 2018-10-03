@@ -19,9 +19,15 @@ const TABS = [
   {title: '萌宠', type: 'animal'}
 ];
 
-
+function getType(query = {}) {
+  return query.type || 'goddess';
+}
 
 class Home extends React.Component {
+  static getInitialProps = async ({query}) => {
+    const type = getType(query);
+    await dispatch(`${type}/get`);
+  };
 
   handleLeftClick = () => {
     const {user} = this.props;
@@ -49,7 +55,7 @@ class Home extends React.Component {
 
   getPropsType() {
     const {router} = this.props;
-    return router.query.type || 'goddess';
+    return getType(router.query);
   }
 
   getPropsTabState() {
@@ -83,6 +89,7 @@ class Home extends React.Component {
           daifee.com
         </NavBar>
         <Tabs
+          instanceId='home'
           animated={false}
           tabs={TABS}
           page={page}
