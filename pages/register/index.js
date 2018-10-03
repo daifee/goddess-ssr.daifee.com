@@ -1,12 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import Link from 'next/link';
+import {withRouter} from 'next/router';
 import {Button, List, InputItem, WingBlank, WhiteSpace, Toast} from 'antd-mobile';
-import {connect} from 'react-redux';
 import {SubPage} from '../../components/Page';
 import {getState, dispatch} from './store';
 import {
   dispatch as globalDispatch,
-  getState as getGlobalState
+  getState as getGlobalState,
+  connect
 } from '../../store';
 
 import './styles.css';
@@ -32,7 +33,7 @@ class Register extends React.Component {
   };
 
   handleSubmit = async () => {
-    let {phone, name, repeatPassword, password, history} = this.props;
+    let {phone, name, repeatPassword, password, router} = this.props;
     phone = phone.replace(/ /g, '');
 
     if (!utilUser.isPhone(phone)) {
@@ -49,7 +50,7 @@ class Register extends React.Component {
         Toast.fail(user.message);
       } else {
         Toast.success(`欢迎，${user.name}`);
-        history.replace(`/users/${user.id}`);
+        router.replace(`/users/${user.id}`);
       }
     }
   };
@@ -113,7 +114,7 @@ class Register extends React.Component {
           </Button>
           <WhiteSpace />
           <p className='login'>
-            <Link to='/login'>登录</Link>
+            <Link href='/login'><a>登录</a></Link>
           </p>
         </WingBlank>
       </SubPage>
@@ -131,4 +132,4 @@ export default connect((rootState, props) => {
     ...user,
     ...props
   };
-})(Register);
+})(withRouter(Register));
