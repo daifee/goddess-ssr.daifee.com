@@ -2,7 +2,7 @@
 import {ASYNC_STATE, PENDING, FAILURE, SUCCESS} from '../../../utils/status';
 import * as serviceBlog from '../../../services/microBlog';
 import * as servicePicture from '../../../services/picture';
-import * as profileStore from '../../Profile/store';
+import * as profileStore from '../../profile/store';
 
 const INIT_STATE = {
   ...ASYNC_STATE,

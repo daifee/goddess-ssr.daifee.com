@@ -1,17 +1,18 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import Link from 'next/link';
 import {Button, List, InputItem, WingBlank, WhiteSpace, Toast} from 'antd-mobile';
 import {SubPage} from '../../components/Page';
 import {getState, dispatch} from './store';
 import {
   dispatch as globalDispatch,
-  getState as getGlobalState
+  getState as getGlobalState,
+  connect
 } from '../../store';
 
 import './styles.css';
 import { PENDING } from '../../utils/status';
 import * as utilUser from '../../utils/user';
+import {withRouter} from 'next/router';
 
 
 class Login extends React.Component {
@@ -25,7 +26,7 @@ class Login extends React.Component {
   };
 
   handleSubmit = async () => {
-    let {phone, password, history} = this.props;
+    let {phone, password, router} = this.props;
     phone = phone.replace(/ /g, '');
     if (!utilUser.isPhone(phone)) {
       Toast.fail('手机号码格式错误');
@@ -37,7 +38,7 @@ class Login extends React.Component {
         Toast.fail(user.message);
       } else {
         Toast.success(`欢迎，${user.name}`);
-        history.replace(`/users/${user.id}`);
+        router.replace(`/users/${user.id}`);
       }
     }
   };
@@ -82,7 +83,7 @@ class Login extends React.Component {
           </Button>
           <WhiteSpace />
           <p className='register'>
-            <Link to='/register'>免费注册</Link>
+            <Link href='/register'><a>免费注册</a></Link>
           </p>
         </WingBlank>
       </SubPage>
@@ -100,4 +101,4 @@ export default connect((rootState, props) => {
     me: globalState.me,
     ...props
   };
-})(Login);
+})(withRouter(Login));

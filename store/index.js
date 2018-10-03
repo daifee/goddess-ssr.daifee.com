@@ -19,13 +19,13 @@ import {
 } from './scope';
 import * as selector from './selector';
 import {scopeModels as homeModels} from '../pages/home/store';
-// import {scopeModels as loginModels} from '../pages/Login/store';
-// import {scopeModels as registerModels} from '../pages/Register/store';
-// import {scopeModels as profileModels} from '../pages/Profile/store';
-// import {scopeModels as userBlogListModels} from '../pages/UserBlogList/store';
-// import {scopeModels as editBlogModels} from '../pages/EditBlog/store';
-// import {scopeModels as userListModels} from '../pages/UserList/store';
-// import {scopeModels as blogListModels} from '../pages/BlogList/store';
+import {scopeModels as loginModels} from '../pages/login/store';
+import {scopeModels as registerModels} from '../pages/register/store';
+import {scopeModels as profileModels} from '../pages/profile/store';
+import {scopeModels as userBlogListModels} from '../pages/user-blog-list/store';
+import {scopeModels as editBlogModels} from '../pages/edit-blog/store';
+import {scopeModels as userListModels} from '../pages/user-list/store';
+import {scopeModels as blogListModels} from '../pages/blog-list/store';
 
 function initStore(initialState = {}) {
   const store = init({
@@ -33,13 +33,13 @@ function initStore(initialState = {}) {
     models: {
       ...globalModels,
       ...homeModels,
-      // ...loginModels,
-      // ...registerModels,
-      // ...profileModels,
-      // ...userBlogListModels,
-      // ...editBlogModels,
-      // ...userListModels,
-      // ...blogListModels
+      ...loginModels,
+      ...registerModels,
+      ...profileModels,
+      ...userBlogListModels,
+      ...editBlogModels,
+      ...userListModels,
+      ...blogListModels
     },
     redux: {
       initialState
@@ -52,11 +52,14 @@ function initStore(initialState = {}) {
   return store;
 }
 
+function connect(...args) {
+  args = [initStore, ...args];
+  return withRematch.apply(null, args);
+}
+
 
 export {
-  initStore,
-  withRematch,
-
+  connect,
   getStore,
 
   selector,

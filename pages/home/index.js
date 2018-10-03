@@ -4,8 +4,7 @@ import Router, {withRouter} from 'next/router';
 import {getState, dispatch} from './store';
 import {
   selector as globalStateSelector,
-  withRematch,
-  initStore
+  connect
 } from '../../store';
 import Page from '../../components/Page';
 import BlogList from '../../components/BlogList';
@@ -128,7 +127,7 @@ class Home extends React.Component {
 }
 
 
-export default withRematch(initStore, (rootState, props) => {
+export default connect((rootState, props) => {
   const state = getState(rootState);
   const user = globalStateSelector.user(rootState);
 
