@@ -1,20 +1,14 @@
-/**
- * 用户主页
- * * 被推荐
- * * 收藏
- * * 设置
- *   * 关于
- *   * 版本
- *   * 退出
- * * 所有微博列表
- *
- */
+
 
 import React from 'react';
-import {connect} from 'react-redux';
 import dayjs from 'dayjs';
+import {withRouter} from 'next/router';
 import {SubPage} from '../../components/Page';
-import {getState as getGlobalState} from '../../store';
+import {
+  getState as getGlobalState,
+  dispatch as globalDispatch,
+  connect
+} from '../../store';
 import BlogList from '../../components/BlogList';
 
 import {dispatch, getState} from './store';
@@ -24,19 +18,25 @@ import { SUCCESS, shouldBlock } from '../../utils/status';
 
 
 class Profile extends React.Component {
+  static getInitialProps = async (ctx) => {
+    await globalDispatch('me/reauthorize', ctx);
+  };
+
   pushRecommended = () => {
-    const {user, history} = this.props;
-    history.push(`/users/${user.id}/blogs/?recommended=all`);
+    const {user, router} = this.props;
+    router.push(`/users/${user.id}/blogs/`, {
+      query: {recommended: 'all'}
+    });
   };
 
   pushLikes = () => {
-    const {user, history} = this.props;
-    history.push(`/users/${user.id}/likes/`);
+    const {user, router} = this.props;
+    router.push(`/users/${user.id}/likes/`);
   };
 
   pushSettings = () => {
-    const {history} = this.props;
-    history.push(`/settings`);
+    const {router} = this.props;
+    router.push(`/settings`);
   };
 
   handleEndReached = () => {
@@ -119,5 +119,5 @@ export default connect((rootState, props) => {
     page: blogList.page,
     ...props
   };
-})(Profile);
+})(withRouter(Profile));
 
