@@ -2,6 +2,7 @@ import React from 'react';
 import {NavBar, Tabs} from 'antd-mobile';
 import Router, {withRouter} from 'next/router';
 import {getState, dispatch} from './store';
+import {dispatch as globalDispatch} from '../../store';
 import {
   selector as globalStateSelector,
   connect
@@ -23,8 +24,9 @@ function getType(query = {}) {
 }
 
 class Home extends React.Component {
-  static getInitialProps = async ({query}) => {
-    const type = getType(query);
+  static getInitialProps = async (ctx) => {
+    const type = getType(ctx.query);
+    await globalDispatch('me/reauthorize', ctx);
     await dispatch(`${type}/get`);
   };
 

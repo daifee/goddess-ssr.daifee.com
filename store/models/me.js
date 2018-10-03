@@ -1,7 +1,10 @@
 
 import {PENDING, SUCCESS, FAILURE, ASYNC_STATE} from '../../utils/status';
 import * as serviceUser from '../../services/user';
-import {client as clientCookie} from '../../utils/cookie';
+import {
+  client as clientCookie,
+  isomorphism as isomorphismCookie
+} from '../../utils/cookie';
 
 const PERSISTENCE_KEY = 'persistence_me';
 
@@ -52,9 +55,9 @@ export default {
       }
     },
 
-    async reauthorize() {
+    async reauthorize(ctx) {
       this.setPending('reauthorize');
-      const user = clientCookie.get(PERSISTENCE_KEY);
+      const user = isomorphismCookie.get(ctx, PERSISTENCE_KEY);
 
       if (user) {
         this.setData(user);
