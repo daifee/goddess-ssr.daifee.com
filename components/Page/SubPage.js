@@ -57,17 +57,18 @@ class SubPage extends React.Component {
   }
 
   handleBack = () => {
-    const {history} = this.props;
+    const {router} = this.props;
+    const history = window.history;
     if (history.length > 1) {
-      history.goBack();
+      history.back();
     } else {
-      history.replace('/');
+      router.replace('/');
     }
   };
 
   handleHome = () => {
-    const {history} = this.props;
-    history.replace('/');
+    const {router} = this.props;
+    router.replace('/');
   };
 }
 
