@@ -13,7 +13,7 @@ import BlogList from '../../components/BlogList';
 
 import {dispatch, getState} from './store';
 
-import './styles.css';
+import './styles.scss';
 import { SUCCESS, shouldBlock } from '../../utils/status';
 
 

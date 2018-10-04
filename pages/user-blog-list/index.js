@@ -10,7 +10,7 @@ import {
 import {dispatch, getState} from './store';
 import { SUCCESS, shouldBlock } from '../../utils/status';
 
-import './styles.css';
+import './styles.scss';
 import { WhiteSpace } from 'antd-mobile';
 
 

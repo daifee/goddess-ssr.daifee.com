@@ -9,7 +9,7 @@ import {
   connect
 } from '../../store';
 
-import './styles.css';
+import './styles.scss';
 import { PENDING } from '../../utils/status';
 import * as utilUser from '../../utils/user';
 import {withRouter} from 'next/router';

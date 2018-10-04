@@ -9,7 +9,7 @@ import {
   connect
 } from '../../store';
 import pkg from '../../package.json';
-import './styles.css';
+import './styles.scss';
 
 class Settings extends React.Component {
   static getInitialProps = async (ctx) => {

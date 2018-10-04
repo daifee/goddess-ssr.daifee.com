@@ -1,6 +1,6 @@
 import React from 'react';
 import {SubPage} from '../../components/Page';
-import './styles.css';
+import './styles.scss';
 
 export default class NotFound extends React.Component {
 

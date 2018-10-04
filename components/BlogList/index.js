@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {ListView} from 'antd-mobile';
 import BlogList from './BlogList';
 
-import './styles.css';
+import './styles.scss';
 
 
 

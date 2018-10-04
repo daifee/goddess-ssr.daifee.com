@@ -7,7 +7,7 @@ import {
 import {dispatch, getState} from './store';
 import UserList from '../../components/UserList';
 import { WhiteSpace } from 'antd-mobile';
-import './styles.css';
+import './styles.scss';
 import { SUCCESS, shouldBlock } from '../../utils/status';
 
 class UserListPage extends React.Component {

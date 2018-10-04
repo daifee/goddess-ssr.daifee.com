@@ -7,7 +7,7 @@ import {
   connect
 } from '../../store';
 import {getState, dispatch} from './store';
-import './styles.css';
+import './styles.scss';
 
 class EditBlog extends React.Component {
   static getInitialProps = async (ctx) => {

@@ -5,7 +5,7 @@
  */
 import DefaultPage from './DefaultPage';
 import SubPage from './SubPage';
-import './styles.css';
+import './styles.scss';
 
 export default DefaultPage;
 export {SubPage};

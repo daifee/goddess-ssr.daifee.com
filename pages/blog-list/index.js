@@ -10,7 +10,7 @@ import {
 } from '../../store';
 import { SUCCESS, shouldBlock } from '../../utils/status';
 import { WhiteSpace } from 'antd-mobile';
-import './styles.css';
+import './styles.scss';
 
 
 
