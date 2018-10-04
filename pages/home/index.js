@@ -11,6 +11,7 @@ import Page from '../../components/Page';
 import BlogList from '../../components/BlogList';
 import {FAILURE, SUCCESS} from '../../utils/status';
 import './styles.scss';
+import utilUrl from 'url';
 
 
 const TABS = [
@@ -50,15 +51,29 @@ class Home extends React.Component {
     router.replace('/home', url, {shallow: true});
   };
 
+  handleRouteChange = (url) => {
+    url = utilUrl.parse(url, true);
+    const type = getType(url.query);
+    dispatch(`${type}/get`);
+  };
+
   componentDidMount() {
+    const {router} = this.props;
     const type = this.getPropsType();
 
-    dispatch(`${type}/get`);
+    // dispatch(`${type}/get`);
+    router.events.on('routeChangeComplete', this.handleRouteChange);
+  }
+
+  componentWillUnmount() {
+    const {router} = this.props;
+    router.events.off('routeChangeComplete', this.handleRouteChange);
   }
 
   getPropsType() {
     const {router} = this.props;
-    return getType(router.query);
+    const url = utilUrl.parse(router.asPath, true);
+    return getType(url.query);
   }
 
   getPropsTabState() {
