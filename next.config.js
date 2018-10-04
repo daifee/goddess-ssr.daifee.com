@@ -37,7 +37,7 @@ module.exports = withCSS(withSass({
   useFileSystemPublicRoutes: false,
 
   webpack: (config, { dev }) => {
-    config.resolve.extensions = ['.web.js', '.js', '.json']
+    config.resolve.extensions = ['.web.js', '.js', '.json'];
 
     config.module.rules.push(
       {
@@ -59,7 +59,7 @@ module.exports = withCSS(withSass({
           __dirname
         ]
       }
-    )
+    );
 
     return config
   }
