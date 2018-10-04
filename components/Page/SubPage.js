@@ -62,13 +62,13 @@ class SubPage extends React.Component {
     if (history.length > 1) {
       history.back();
     } else {
-      router.replace('/');
+      router.replace('/home', '/');
     }
   };
 
   handleHome = () => {
     const {router} = this.props;
-    router.replace('/');
+    router.replace('/home', '/');
   };
 }
 

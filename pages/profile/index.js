@@ -25,12 +25,12 @@ class Profile extends React.Component {
   pushRecommended = () => {
     const {user, router} = this.props;
     const url = `/users/${user.id}/blogs/?recommended=all`;
-    router.push(url);
+    router.push('/user-blog-list', url);
   };
 
   pushLikes = () => {
     const {user, router} = this.props;
-    router.push(`/users/${user.id}/likes/`);
+    router.push('/user-likes', `/users/${user.id}/likes/`);
   };
 
   pushSettings = () => {

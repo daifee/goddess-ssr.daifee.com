@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavBar, Tabs} from 'antd-mobile';
-import Router, {withRouter} from 'next/router';
+import {withRouter} from 'next/router';
 import {getState, dispatch} from './store';
 import {dispatch as globalDispatch} from '../../store';
 import {
@@ -31,21 +31,23 @@ class Home extends React.Component {
   };
 
   handleLeftClick = () => {
-    const {user} = this.props;
+    const {user, router} = this.props;
     if (user) {
-      Router.push(`/users/${user.id}`);
+      router.push('/profile', `/users/${user.id}`);
     } else {
-      Router.push('/login');
+      router.push('/login');
     }
   };
 
   handleRightClick = () => {
-    Router.push('/blogs/edit');
+    const {router} = this.props;
+    router.push('/edit-blog', '/blogs/edit');
   };
 
   handleTabClick = (tabData) => {
-    const url = `/home?type=${tabData.type}`;
-    Router.replace(url, url, {shallow: true});
+    const {router} = this.props;
+    const url = `/?type=${tabData.type}`;
+    router.replace('/home', url, {shallow: true});
   };
 
   componentDidMount() {

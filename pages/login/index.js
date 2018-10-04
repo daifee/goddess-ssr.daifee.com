@@ -38,7 +38,7 @@ class Login extends React.Component {
         Toast.fail(user.message);
       } else {
         Toast.success(`欢迎，${user.name}`);
-        router.replace(`/users/${user.id}`);
+        router.replace('/profile', `/users/${user.id}`);
       }
     }
   };

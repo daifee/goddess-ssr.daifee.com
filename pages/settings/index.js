@@ -23,19 +23,19 @@ class Settings extends React.Component {
 
   pushAllUsers = () => {
     const {router} = this.props;
-    router.push('/admin/users');
+    router.push('/user-list', '/admin/users');
   };
 
   pushAllBlogs = () => {
     const {router} = this.props;
-    router.push('/admin/blogs');
+    router.push('/blog-list', '/admin/blogs');
   };
 
   handleLogout = async () => {
     const {router} = this.props;
     await globalDispatch('me/deauthorize');
 
-    router.replace('/');
+    router.replace('/home', '/');
   };
 
   render() {

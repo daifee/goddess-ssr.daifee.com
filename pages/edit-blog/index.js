@@ -42,7 +42,7 @@ class EditBlog extends React.Component {
       Toast.fail(result.message);
     } else {
       Toast.success('发布成功!');
-      router.push(`/users/${user.id}`);
+      router.push('/profile', `/users/${user.id}`);
     }
   };
 
