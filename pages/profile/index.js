@@ -10,12 +10,11 @@ import {
   connect
 } from '../../store';
 import BlogList from '../../components/BlogList';
-
+import Head from 'next/head';
 import {dispatch, getState} from './store';
 
 import './styles.scss';
 import { SUCCESS, shouldBlock } from '../../utils/status';
-
 
 class Profile extends React.Component {
   static getInitialProps = async (ctx) => {
@@ -69,6 +68,7 @@ class Profile extends React.Component {
 
     return (
       <SubPage id='profile' navBar={{children: user.name}}>
+        <Head><title>{user.name}</title></Head>
         <header>
           <div className='user'>
             <div className='avatar'>

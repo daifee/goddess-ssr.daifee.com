@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import {Button, List, InputItem, WingBlank, WhiteSpace, Toast} from 'antd-mobile';
 import {SubPage} from '../../components/Page';
@@ -14,6 +15,7 @@ import { PENDING } from '../../utils/status';
 import * as utilUser from '../../utils/user';
 import {withRouter} from 'next/router';
 
+const TITLE = '登录';
 
 class Login extends React.Component {
 
@@ -47,7 +49,8 @@ class Login extends React.Component {
     const {password, phone, me} = this.props;
 
     return (
-      <SubPage id='login' navBar={{children: '登录'}}>
+      <SubPage id='login' navBar={{children: TITLE}}>
+        <Head><title>{TITLE}</title></Head>
         <h1 className='title'>daifee.com</h1>
         <List>
           <InputItem

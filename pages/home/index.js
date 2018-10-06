@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import {NavBar, Tabs} from 'antd-mobile';
 import {withRouter} from 'next/router';
 import {getState, dispatch} from './store';
@@ -13,6 +14,7 @@ import {FAILURE, SUCCESS} from '../../utils/status';
 import './styles.scss';
 import utilUrl from 'url';
 
+const TITLE = 'daifee.com';
 
 const TABS = [
   {title: '美女', type: 'goddess'},
@@ -91,6 +93,7 @@ class Home extends React.Component {
 
     return (
       <Page id='home'>
+        <Head><title>{TITLE}</title></Head>
         <NavBar
           mode='light'
           leftContent='我'
@@ -104,7 +107,7 @@ class Home extends React.Component {
             </div>
           )}
         >
-          daifee.com
+          {TITLE}
         </NavBar>
         <Tabs
           instanceId='home'

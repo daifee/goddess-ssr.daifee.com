@@ -20,6 +20,7 @@ app.prepare()
     const router = new Router();
 
     router.get('/', rewrite('home'));
+    router.get('/about', rewrite('about'));
     router.get('/login', rewrite('login'));
     router.get('/register', rewrite('register'));
     router.get('/settings', rewrite('settings'));

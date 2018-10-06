@@ -1,5 +1,6 @@
 
 import React from 'react';
+import Head from 'next/head';
 import {SubPage} from '../../components/Page';
 import BlogList from '../../components/BlogList';
 
@@ -12,6 +13,7 @@ import { SUCCESS, shouldBlock } from '../../utils/status';
 import { WhiteSpace } from 'antd-mobile';
 import './styles.scss';
 
+const TITLE = '被推荐的微博';
 
 
 class BlogListPage extends React.Component {
@@ -45,7 +47,10 @@ class BlogListPage extends React.Component {
     const {status, blogList} = this.props;
 
     return (
-      <SubPage id='user-blog-list' navBar={{children: '被推荐的微博'}}>
+      <SubPage id='user-blog-list' navBar={{children: TITLE}}>
+        <Head>
+          <title>{TITLE}</title>
+        </Head>
         <WhiteSpace />
         <BlogList
           blogList={blogList}

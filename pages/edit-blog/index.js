@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { Toast, List, TextareaItem, WingBlank, WhiteSpace, ImagePicker, NavBar } from 'antd-mobile';
 import {withRouter} from 'next/router';
 import {
@@ -8,6 +9,8 @@ import {
 } from '../../store';
 import {getState, dispatch} from './store';
 import './styles.scss';
+
+const TITLE = '发布微博';
 
 class EditBlog extends React.Component {
   static getInitialProps = async (ctx) => {
@@ -51,6 +54,7 @@ class EditBlog extends React.Component {
 
     return (
       <main id='edit-blog'>
+        <Head><title>{TITLE}</title></Head>
         <NavBar
           mode='light'
           leftContent='取消'
@@ -64,7 +68,7 @@ class EditBlog extends React.Component {
             </div>
           )}
         >
-          发布微博
+          {TITLE}
         </NavBar>
 
         <List>
